@@ -88,17 +88,17 @@
     </div>
 
     <script>
-        let passNumber = 07092005
-        let passNumber = localStorage.getItem("passNumber") || 07092005; // Mật khẩu ban đầu
+        let password = 07092005
+        let password = localStorage.getItem("password") || 07092005; // Mật khẩu ban đầu
         let alreadyClicked = false;
 
         // Kiểm tra mật khẩu nhập vào
         function checkPassword() {
             const inputPass = document.getElementById('passwordInput').value;
-            if (inputPass == passNumber) {
+            if (inputPass == password) {
                 alert('Đăng nhập thành công!');
-                passNumber++; // Tăng mật khẩu
-                localStorage.setItem("passNumber", passNumber); // Lưu mật khẩu mới vào localStorage
+                password++; // Tăng mật khẩu
+                localStorage.setItem("password", password); // Lưu mật khẩu mới vào localStorage
                 document.getElementById('passwordDiv').style.display = 'none';
                 document.getElementById('gameDiv').style.display = 'block';
             } else {

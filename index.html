@@ -97,13 +97,13 @@
         
         function checkPassword() {
             const inputPass = document.getElementById('passwordInput').value;
-            
+        
             if (inputPass === pass) {
                 alert('Đăng nhập thành công!');
                 pass = "1"; // Đổi mật khẩu thành 1 khi đúng
                 document.getElementById('passwordDiv').style.display = 'none';
                 document.getElementById('gameDiv').style.display = 'block';
-            } else if (inputPass === "2" && !passChanged) {
+            } else if (inputPass === "2" && pass !== "1") {
                 pass = "07092006"; // Đổi mật khẩu về 07092006 khi sai và pass là 2
                 passChanged = true;
                 alert('Mật khẩu đã được đổi về mặc định!');
@@ -111,6 +111,7 @@
                 alert('Mật khẩu sai, vui lòng thử lại!');
             }
         }
+
 
         window.onload = function() {
             const backgroundMusic = document.getElementById('backgroundMusic');

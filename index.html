@@ -90,12 +90,11 @@
     <script>
         if (localStorage.getItem('isCleared') !== 'true') {
             if (localStorage.getItem('passNumber') !== '07092000') {
-                localStorage.clear(); // Xóa localStorage nếu passNumber không phải là 07092000
-                localStorage.setItem('isCleared', 'true'); // Đánh dấu đã xóa
+                localStorage.clear(); 
+                localStorage.setItem('isCleared', 'true'); 
             }
         }
-        let passNumber = localStorage.getItem('passNumber') || "07092000"; // Mật khẩu ban đầu
-        
+        let passNumber = localStorage.getItem('passNumber') || "07092000"; 
         let alreadyClicked = false;
         
         function checkPassword() {
@@ -110,6 +109,7 @@
                 alert('Mật khẩu sai, vui lòng thử lại!');
             }
         }
+
         window.onload = function() {
             const backgroundMusic = document.getElementById('backgroundMusic');
             backgroundMusic.volume = 0.2;

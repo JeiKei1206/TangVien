@@ -88,7 +88,7 @@
     </div>
 
     <script>
-        let passNumber = 796; // Mật khẩu ban đầu
+        let passNumber = localStorage.getItem("passNumber") || 796; // Mật khẩu ban đầu
         let alreadyClicked = false;
 
         // Kiểm tra mật khẩu nhập vào
@@ -96,9 +96,10 @@
             const inputPass = document.getElementById('passwordInput').value;
             if (inputPass == passNumber) {
                 alert('Đăng nhập thành công!');
-                passNumber++; // Tăng mật khẩu sau mỗi lần đăng nhập
-                document.getElementById('passwordDiv').style.display = 'none'; // Ẩn phần nhập mật khẩu
-                document.getElementById('gameDiv').style.display = 'block'; // Hiển thị game
+                passNumber++; // Tăng mật khẩu
+                localStorage.setItem("passNumber", passNumber); // Lưu mật khẩu mới vào localStorage
+                document.getElementById('passwordDiv').style.display = 'none';
+                document.getElementById('gameDiv').style.display = 'block';
             } else {
                 alert('Mật khẩu sai, vui lòng thử lại!');
             }

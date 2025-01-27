@@ -147,20 +147,20 @@
             document.addEventListener('keydown', function (event) {
                 if (event.key === 'F5' || (event.ctrlKey && event.key === 'r')) {
                     event.preventDefault(); // Chặn tải lại trang
-                    alert("Không được tải lại trang!");
+                    alert("Bấm 1 lần thôi nha -.-");
                 }
             });
             
             // Ngăn tải lại từ menu chuột phải
             document.addEventListener('contextmenu', function (event) {
                 event.preventDefault();
-                alert("Chức năng này đã bị vô hiệu hóa!");
+                alert("Bấm 1 lần thôi nha -.-");
             });
             
             // Ngăn tải lại từ trước khi rời trang
             window.addEventListener('beforeunload', function (event) {
                 event.preventDefault();
-                event.returnValue = ''; // Hiển thị cảnh báo mặc định
+                alert("Bấm 1 lần thôi nha -.-");
             });
     </script>
 </body>

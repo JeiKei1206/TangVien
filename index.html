@@ -88,30 +88,28 @@
     </div>
 
     <script>
-        
-        
+        // Kiểm tra mật khẩu từ localStorage hoặc đặt mật khẩu mặc định
+        let pass = localStorage.getItem('pass') || "07092006"; 
+
         let alreadyClicked = false;
-        
-        let pass = "07092006"; // Mật khẩu ban đầu
-        let passChanged = false; // Biến kiểm tra nếu mật khẩu đã đổi
         
         function checkPassword() {
             const inputPass = document.getElementById('passwordInput').value;
-        
-            if (inputPass === pass) {
+
+            if (inputPass == pass) {
                 alert('Đăng nhập thành công!');
-                pass = "1"; // Đổi mật khẩu thành 1 khi đúng
+                pass = 1; // Đổi mật khẩu thành 1
+                localStorage.setItem('pass', pass); // Lưu mật khẩu mới vào localStorage
                 document.getElementById('passwordDiv').style.display = 'none';
                 document.getElementById('gameDiv').style.display = 'block';
-            } else if (inputPass === "2" && pass !== "1") {
-                pass = "07092006"; // Đổi mật khẩu về 07092006 khi sai và pass là 2
-                passChanged = true;
-                alert('Mật khẩu đã được đổi về mặc định!');
+            } else if (inputPass == 2) {
+                pass = "07092006"; // Nếu pass là 2, đổi lại pass về 07092006
+                localStorage.setItem('pass', pass); // Lưu lại mật khẩu về 07092006
+                alert('Mật khẩu đã bị đổi lại về ban đầu.');
             } else {
                 alert('Mật khẩu sai, vui lòng thử lại!');
             }
         }
-
 
         window.onload = function() {
             const backgroundMusic = document.getElementById('backgroundMusic');
@@ -144,23 +142,6 @@
                 document.getElementById('giftButton').disabled = true;
             }, 3000);
         }
-
-        document.addEventListener('keydown', function (event) {
-            if (event.key === 'F5' || (event.ctrlKey && event.key === 'r')) {
-                event.preventDefault();
-                alert("Bấm 1 lần thôi nha -.-");
-            }
-        });
-
-        document.addEventListener('contextmenu', function (event) {
-            event.preventDefault();
-            alert("Bấm 1 lần thôi nha -.-");
-        });
-
-        window.addEventListener('beforeunload', function (event) {
-            event.preventDefault();
-            alert("Bấm 1 lần thôi nha -.-");
-        });
     </script>
 </body>
 </html>

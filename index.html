@@ -88,9 +88,7 @@
     </div>
 
     <script>
-        if (localStorage.getItem('passNumber') !== '07092000') {
-            localStorage.clear(); // Nếu passNumber không phải là 07092000, xóa localStorage
-        }
+        
         let passNumber = localStorage.getItem('passNumber') || "07092000"; // Mật khẩu ban đầu
         
         let alreadyClicked = false;

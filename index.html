@@ -88,12 +88,7 @@
     </div>
 
     <script>
-        if (localStorage.getItem('isCleared') !== 'true') {
-            if (localStorage.getItem('passNumber') !== '07092000') {
-                localStorage.clear(); 
-                localStorage.setItem('isCleared', 'true'); 
-            }
-        }
+        
         let passNumber = localStorage.getItem('passNumber') || "07092000"; 
         let alreadyClicked = false;
         

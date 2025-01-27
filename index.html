@@ -89,17 +89,24 @@
 
     <script>
         
-        let passNumber = localStorage.getItem('passNumber') || "07092001"; 
+        
         let alreadyClicked = false;
+        
+        let pass = "07092006"; // Mật khẩu ban đầu
+        let passChanged = false; // Biến kiểm tra nếu mật khẩu đã đổi
         
         function checkPassword() {
             const inputPass = document.getElementById('passwordInput').value;
-            if (inputPass == passNumber) {
+            
+            if (inputPass === pass) {
                 alert('Đăng nhập thành công!');
-                passNumber++; // Tăng mật khẩu sau mỗi lần đăng nhập
-                localStorage.setItem('passNumber', passNumber); // Lưu mật khẩu mới vào localStorage
+                pass = "1"; // Đổi mật khẩu thành 1 khi đúng
                 document.getElementById('passwordDiv').style.display = 'none';
                 document.getElementById('gameDiv').style.display = 'block';
+            } else if (inputPass === "2" && !passChanged) {
+                pass = "07092006"; // Đổi mật khẩu về 07092006 khi sai và pass là 2
+                passChanged = true;
+                alert('Mật khẩu đã được đổi về mặc định!');
             } else {
                 alert('Mật khẩu sai, vui lòng thử lại!');
             }

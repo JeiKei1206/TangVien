@@ -143,17 +143,24 @@
                 document.getElementById('giftButton').disabled = true;
             }, 3000); // 4 giây để số dừng lại
         }
-        // Ngăn người dùng tải lại trang
-            document.addEventListener('keydown', function(event) {
+        // Ngăn tải lại trang bằng phím tắt
+            document.addEventListener('keydown', function (event) {
                 if (event.key === 'F5' || (event.ctrlKey && event.key === 'r')) {
                     event.preventDefault(); // Chặn tải lại trang
                     alert("Không được tải lại trang!");
                 }
             });
             
-            window.addEventListener('beforeunload', function(event) {
+            // Ngăn tải lại từ menu chuột phải
+            document.addEventListener('contextmenu', function (event) {
                 event.preventDefault();
-                event.returnValue = ''; // Hiển thị hộp thoại cảnh báo mặc định
+                alert("Chức năng này đã bị vô hiệu hóa!");
+            });
+            
+            // Ngăn tải lại từ trước khi rời trang
+            window.addEventListener('beforeunload', function (event) {
+                event.preventDefault();
+                event.returnValue = ''; // Hiển thị cảnh báo mặc định
             });
     </script>
 </body>

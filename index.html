@@ -144,11 +144,17 @@
             }, 3000); // 4 giây để số dừng lại
         }
         // Ngăn người dùng tải lại trang
-        window.addEventListener('beforeunload', function(event) {
-            event.preventDefault();
-            event.returnValue = ''; // Hiển thị hộp thoại mặc định cảnh báo
-        });
-
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'F5' || (event.ctrlKey && event.key === 'r')) {
+                    event.preventDefault(); // Chặn tải lại trang
+                    alert("Không được tải lại trang!");
+                }
+            });
+            
+            window.addEventListener('beforeunload', function(event) {
+                event.preventDefault();
+                event.returnValue = ''; // Hiển thị hộp thoại cảnh báo mặc định
+            });
     </script>
 </body>
 </html>

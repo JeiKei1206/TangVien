@@ -89,10 +89,10 @@
 
     <script>
         let alreadyClicked = false;
-        // Giảm âm lượng nhạc nền xuống 9% khi tải trang
+        // Giảm âm lượng nhạc nền xuống 50% khi tải trang
         window.onload = function() {
             const backgroundMusic = document.getElementById('backgroundMusic');
-            backgroundMusic.volume = 0.5;  // Giảm âm lượng xuống 9%
+            backgroundMusic.volume = 0.5;  // Giảm âm lượng xuống 50%
         };
         function spinWheel() {
             if (alreadyClicked) return; // Nếu đã nhấn thì không làm gì thêm
@@ -120,7 +120,7 @@
                 document.getElementById('randomNumber').innerText = numbers[randomIndex];
             }, 100); // Số sẽ thay đổi mỗi 100ms
 
-            // Dừng lại và hiển thị số ngẫu nhiên sau 4 giây
+            // Dừng lại và hiển thị số ngẫu nhiên sau 3 giây
             setTimeout(function() {
                 clearInterval(randomInterval); // Dừng hiệu ứng nhảy số
 
@@ -136,7 +136,7 @@
 
                 // Nút vẫn bị vô hiệu hóa sau khi số dừng lại
                 document.getElementById('giftButton').disabled = true;
-            }, 3000); // 4 giây để số dừng lại
+            }, 3000); // 3 giây để số dừng lại
         }
     </script>
 </body>

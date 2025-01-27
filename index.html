@@ -88,24 +88,22 @@
     </div>
 
     <script>
-        let password = 07092005
-        let password = localStorage.getItem("password") || 07092005; // Mật khẩu ban đầu
+        let passNumber = localStorage.getItem('passNumber') || "07092005"; // Mật khẩu ban đầu
         let alreadyClicked = false;
 
         // Kiểm tra mật khẩu nhập vào
         function checkPassword() {
             const inputPass = document.getElementById('passwordInput').value;
-            if (inputPass == password) {
+            if (inputPass == passNumber) {
                 alert('Đăng nhập thành công!');
-                password++; // Tăng mật khẩu
-                localStorage.setItem("password", password); // Lưu mật khẩu mới vào localStorage
+                passNumber++; // Tăng mật khẩu sau mỗi lần đăng nhập
+                localStorage.setItem('passNumber', passNumber); // Lưu mật khẩu mới vào localStorage
                 document.getElementById('passwordDiv').style.display = 'none';
                 document.getElementById('gameDiv').style.display = 'block';
             } else {
                 alert('Mật khẩu sai, vui lòng thử lại!');
             }
         }
-
         window.onload = function() {
             const backgroundMusic = document.getElementById('backgroundMusic');
             backgroundMusic.volume = 0.2;

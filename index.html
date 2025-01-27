@@ -13,7 +13,7 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            background: url('baolixi.jpg') no-repeat center center fixed;
+            background: url('/Images/baolixi.jpg') no-repeat center center fixed;
             background-size: cover;
             color: white;
         }
@@ -70,13 +70,13 @@
 <body>
     <!-- Âm thanh nền -->
     <audio id="backgroundMusic" autoplay loop volume="0">
-        <source src="bg-sound.mp3" type="audio/mp3">
+        <source src="/Audio/bg-sound.mp3" type="audio/mp3">
         Your browser does not support the audio element.
     </audio>
 
     <!-- Âm thanh lúc nhảy số -->
     <audio id="numberSound">
-        <source src="spin-sound.mp3" type="audio/mp3">
+        <source src="/Audio/spin-sound.mp3" type="audio/mp3">
         Your browser does not support the audio element.
     </audio>
 
@@ -89,11 +89,14 @@
 
     <script>
         let alreadyClicked = false;
-        // Giảm âm lượng nhạc nền xuống 50% khi tải trang
+        // Giảm âm lượng nhạc nền xuống 9% khi tải trang
         window.onload = function() {
             const backgroundMusic = document.getElementById('backgroundMusic');
-            backgroundMusic.volume = 0.5;  // Giảm âm lượng xuống 50%
+            backgroundMusic.volume = 0.05;  // Giảm âm lượng xuống 9%
+            const numberSound = document.getElementById('numberSound');
+            numberSound.volume = 0.3;
         };
+        
         function spinWheel() {
             if (alreadyClicked) return; // Nếu đã nhấn thì không làm gì thêm
 
@@ -120,7 +123,7 @@
                 document.getElementById('randomNumber').innerText = numbers[randomIndex];
             }, 100); // Số sẽ thay đổi mỗi 100ms
 
-            // Dừng lại và hiển thị số ngẫu nhiên sau 3 giây
+            // Dừng lại và hiển thị số ngẫu nhiên sau 4 giây
             setTimeout(function() {
                 clearInterval(randomInterval); // Dừng hiệu ứng nhảy số
 
@@ -136,7 +139,7 @@
 
                 // Nút vẫn bị vô hiệu hóa sau khi số dừng lại
                 document.getElementById('giftButton').disabled = true;
-            }, 3000); // 3 giây để số dừng lại
+            }, 3000); // 4 giây để số dừng lại
         }
     </script>
 </body>

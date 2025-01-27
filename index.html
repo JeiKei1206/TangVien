@@ -13,7 +13,7 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            background: url('baolixi.jpg') no-repeat center center fixed;
+            background: url('/Images/baolixi.jpg') no-repeat center center fixed;
             background-size: cover;
             color: white;
         }
@@ -69,11 +69,14 @@
 </head>
 <body>
     <!-- Âm thanh nền -->
-    
+    <audio id="backgroundMusic" autoplay loop volume="0">
+        <source src="/Audio/bg-sound.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
 
     <!-- Âm thanh lúc nhảy số -->
     <audio id="numberSound">
-        <source src="spin-sound.mp3" type="audio/mp3">
+        <source src="/Audio/spin-sound.mp3" type="audio/mp3">
         Your browser does not support the audio element.
     </audio>
 
@@ -86,7 +89,11 @@
 
     <script>
         let alreadyClicked = false;
-
+        // Giảm âm lượng nhạc nền xuống 9% khi tải trang
+        window.onload = function() {
+            const backgroundMusic = document.getElementById('backgroundMusic');
+            backgroundMusic.volume = 0.5;  // Giảm âm lượng xuống 9%
+        };
         function spinWheel() {
             if (alreadyClicked) return; // Nếu đã nhấn thì không làm gì thêm
 

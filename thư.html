@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hiệu ứng mở thư</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: url('https://cellphones.com.vn/sforum/wp-content/uploads/2022/12/hinh-nen-powerpoint-tet-14-3.png') no-repeat center center fixed;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+        }
+
+        .envelope {
+            width: 700px;
+            height: 400px;
+            background-image: url('/Images/Pic1.png'); /* Đường dẫn tới ảnh bì thư */
+            background-size: cover;
+            position: relative;
+            border-radius: 5px;
+            transition: transform 1.5s ease, opacity 1s ease;
+            z-index: 2;
+        }
+
+        .envelope:before, .envelope:after {
+            content: '';
+            position: absolute;
+            width: 700px;
+            height: 400px;
+            background-color: transparent;
+            left: 0;
+            transition: transform 1.5s ease;
+        }
+
+        .letter {
+            width: 500px;
+            height: 260px;
+            background-color: #ffffff;
+            border: 3px solid #FF9800;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 0;
+            z-index: 1;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            transition: transform 1.5s ease, opacity 1.5s ease;
+        }
+
+        .letter.open {
+            transform: translate(-50%, -50%) scale(2);
+            opacity: 1;
+        }
+
+        .envelope.open {
+            opacity: 0;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+        @keyframes typewriter {
+            0% {
+                width: 0;
+            }
+            100% {
+                width: 100%;
+            }
+        }
+
+        .letter-content {
+            font-family: 'Pacifico', cursive;
+            font-size: 20px;
+            color: #F44336;
+            text-align: center;
+            line-height: 1.6;
+            overflow: hidden;
+            white-space: normal;
+            border-right: 3px solid;
+        }
+
+        .letter-content.visible {
+            opacity: 1;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #FF9800;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #FF5722;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="envelope" id="envelope"></div>
+        <div class="letter" id="letter">
+            <div class="letter-content" id="letterContent">
+                <!-- Nội dung sẽ được gõ tự động ở đây -->
+            </div>
+        </div>
+        <button id="openButton">Mở thư</button>
+    </div>
+
+    <!-- Thêm phần âm thanh -->
+    <audio id="openSound" src="/Audio/nhạc thư.mp3" preload="auto"></audio>
+
+    <script>
+        window.onload = function() {
+            const openSound = document.getElementById('openSound');
+            openSound.volume = 0.5;
+            
+        };
+        const envelope = document.getElementById("envelope");
+        const letter = document.getElementById("letter");
+        const letterContent = document.getElementById("letterContent");
+        const openButton = document.getElementById("openButton");
+
+        const text = "Hé lô^^. Tui chỉ muốn cảm ơn Viên vì đã luôn ở bên, kiên nhẫn với tui và mang đến niềm vui cho cuộc sống của tui. Năm mới đến, hy vọng chúng ta sẽ tiếp tục bên nhau, cùng nhau trò chuyện thật vui vẻ. Chúc Viên năm mới luôn xinh đẹp, khỏe mạnh, và thành công. Cũng mong Viên sẽ luôn yêu thương một đứa trẻ con như tui🥹. Hãy cùng nhau bước qua năm mới đầy hạnh phúc nhé 💖!";
+        let currentChar = 0;
+
+        openButton.addEventListener("click", () => {
+            if (envelope.classList.contains("open")) return;
+
+            envelope.classList.add("open");
+            letter.classList.add("open");
+
+            openButton.style.display = "none";
+
+            // Phát âm thanh khi mở thư
+            document.getElementById('openSound').play();
+
+            setTimeout(() => {
+                letterContent.style.opacity = 1;
+                let typingEffect = setInterval(() => {
+                    letterContent.innerHTML += text[currentChar];
+                    currentChar++;
+
+                    // Nếu gặp dấu chấm hoặc phẩy, tạm dừng
+                    if (text[currentChar - 1] === '.' || text[currentChar - 1] === ',') {
+                        clearInterval(typingEffect);
+                        setTimeout(() => {
+                            typingEffect = setInterval(() => {
+                                letterContent.innerHTML += text[currentChar];
+                                currentChar++;
+                                if (currentChar >= text.length) {
+                                    clearInterval(typingEffect);
+                                }
+                            }, 100);
+                        }, 300); // Dừng 300ms tại dấu câu
+                    }
+
+                    if (currentChar >= text.length) {
+                        clearInterval(typingEffect);
+                    }
+                }, 100); // Thời gian giữa các chữ
+            }, 1500);
+        });
+    </script>
+</body>
+</html>

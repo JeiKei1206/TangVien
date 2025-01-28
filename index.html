@@ -104,7 +104,7 @@
     </div>
     
     <div id="gameDiv" style="display:none;">
-        <audio id="backgroundMusic" autoplay loop>
+        <audio id="backgroundMusic">
             <source src="https://github.com/JeiKei1206/lixi/raw/main/0127.mp3" type="audio/mp3">
         </audio>
         <audio id="numberSound">
@@ -130,7 +130,7 @@
         
         function checkPassword() {
             const inputPass = document.getElementById('passwordInput').value;
-
+            document.getElementById('backgroundMusic').play();
             if (inputPass == pass) {
                 alert('Đăng nhập thành công!');
                 pass = 1; // Đổi mật khẩu thành 1

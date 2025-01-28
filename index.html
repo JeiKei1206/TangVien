@@ -87,6 +87,11 @@
                 opacity: 0; /* Biến mất */
             }
         }
+        #message a {
+            color: #22b9ff; /* Đổi màu chữ */
+            display: block; /* Đưa dòng chữ xuống dưới */
+            margin-top: 10px; /* Khoảng cách giữa các đoạn văn */
+        }
 
     </style>
 </head>
@@ -108,7 +113,13 @@
         <h1>Chúc Mừng Năm Mới!</h1>
         <button id="giftButton" onclick="spinWheel()">Nhận lì xì</button>
         <div class="number" id="randomNumber">Hãy nhấn nút để nhận số</div>
-        <div class="message" id="message">Nhớ chụp màn hình gửi tui nhen ^^</div>
+        <div 
+            class="message" id="message">Nhớ chụp màn hình gửi tui nhen ^^
+            <a href="thư.html">
+                Click vô đây, tui có điều muốn nói.
+            </a>
+        </div>
+        
     </div>
 
     <script>
@@ -232,5 +243,6 @@
 
 
     </script>
+    
 </body>
 </html>

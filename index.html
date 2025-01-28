@@ -65,9 +65,33 @@
             text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
             display: none;
         }
+        .icon {
+            font-size: 15px;
+            position: absolute;
+            animation: shrinkAndFade 2s forwards;
+            
+            animation-delay: calc(0.8s * var(--i));
+        }
+
+        @keyframes shrinkAndFade {
+            0% {
+                transform: scale(0); /* Bắt đầu nhỏ */
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.5); /* Phóng to */
+                opacity: 1;
+            }
+            100% {
+                transform: scale(0); /* Thu nhỏ lại */
+                opacity: 0; /* Biến mất */
+            }
+        }
+
     </style>
 </head>
 <body>
+    <div id="iconContainer"></div>
     <div id="passwordDiv">
         <h2>Nhập mật khẩu để tiếp tục:</h2>
         <input type="number" id="passwordInput" placeholder="Nhập mật khẩu">
@@ -142,6 +166,71 @@
                 document.getElementById('giftButton').disabled = true;
             }, 3000);
         }
+
+        let iconPositions = [];
+
+        function createRandomIcon() {
+            const iconContainer = document.getElementById('iconContainer');
+            const icons = ['🧧', '🪙'];
+            const icon = document.createElement('div');
+            const radius = 500;
+            const minDistance = 80; // Giảm khoảng cách tối thiểu
+            const margin = 10; // Khoảng cách tối thiểu từ khung hình
+
+            icon.classList.add('icon', 'blink');
+            icon.textContent = icons[Math.floor(Math.random() * icons.length)];
+
+            let validPosition = false;
+            let top, left;
+
+            while (!validPosition) {
+                top = Math.random() * 90 + '%';
+                left = Math.random() * 90 + '%';
+
+                const x = parseFloat(left) / 100 * window.innerWidth;
+                const y = parseFloat(top) / 100 * window.innerHeight;
+
+                validPosition = true;
+                if (x < margin || x > window.innerWidth - margin || y < margin || y > window.innerHeight - margin) {
+                    validPosition = false;
+                }
+
+                for (let pos of iconPositions) {
+                    const dist = Math.sqrt(Math.pow(x - pos.x, 2) + Math.pow(y - pos.y, 2));
+                    if (dist < minDistance) {
+                        validPosition = false;
+                        break;
+                    }
+                }
+            }
+
+            icon.style.top = top;
+            icon.style.left = left;
+            iconContainer.appendChild(icon);
+
+            const x = parseFloat(left) / 100 * window.innerWidth;
+            const y = parseFloat(top) / 100 * window.innerHeight;
+            iconPositions.push({ x, y });
+
+            setTimeout(() => {
+                icon.remove();
+                iconPositions = iconPositions.filter(pos => pos.x !== x && pos.y !== y);
+            }, 3000); // Thời gian ẩn mỗi icon
+        }
+
+        function createIcons() {
+            const iconCount = Math.floor(Math.random() * 4) + 4; // Số lượng icon từ 4 đến 7
+            for (let i = 0; i < iconCount; i++) {
+                createRandomIcon();
+            }
+        }
+
+        // Tạo nhóm icon mới mỗi 3 giây để giảm khoảng cách thời gian giữa các nhóm
+        setInterval(() => {
+            createIcons();
+        }, 1000);
+
+
     </script>
 </body>
 </html>
